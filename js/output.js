@@ -1,0 +1,1 @@
+function func1(){return"What's wrong with you"}!function(){return alert("ok"),"I am ok"}();
