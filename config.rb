@@ -4,7 +4,7 @@
 http_path = "/"
 css_dir = "css"
 sass_dir = "_/sass"
-images_dir = "images"
+images_dir = "img"
 javascripts_dir = "js"
 output_style = :expanded
 

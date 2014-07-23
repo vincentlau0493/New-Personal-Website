@@ -10,10 +10,10 @@ module.exports = function(grunt) {
 		uglify: {
 			my_target: {
 				options: {
-					beautify: false
+					beautify: true
 				},
 				files: {
-					"js/output.js":["_/js/*.js"]
+					"js/personal_website.js":["_/js/*.js"]
 				}
 			}
 		}, //uglify
@@ -26,19 +26,19 @@ module.exports = function(grunt) {
 		}, //compass
 		watch: {
 			options: {
-				livereload:true
+				livereload:false
 			},
 			script: {
 				files: ["_/js/*.js"],
 				tasks: ["uglify"]
 			}, //script
 			sass: {
-				files: ["_/sass/*.scss"],
+				files: ["_/sass/*.scss","_/sass/partials/*.scss"],
 				tasks: ["compass"]
-			}, //sass
-			html: {
-				files: ['*.html']
-			} //html
+			} //sass
+			// html: {
+			// 	files: ['*.html']
+			// } //html
 		} //watch
 	}); //config
 

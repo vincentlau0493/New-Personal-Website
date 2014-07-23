@@ -1,0 +1,123 @@
+$color-bg: #CFF09E;
+$color-btn: #FE4365;
+$color-secondary: #C8C8A9;
+$color-active: #4ECDC4;
+
+
+
+.animate-gallery {
+	width:100%;
+	margin-top:36px;
+	padding-bottom:36px;
+	//margin:auto;
+	//border:1px dotted #666;
+	@include box-sizing(border-box);
+	.tab-container {
+		padding:10px;
+		overflow:visible;
+		width:100%;
+		margin:auto;
+		margin-bottom:24px;
+		@include clearfix;
+		a {
+			.tag-circle {
+				margin:0 10px 0 0;
+				display:inline-block;
+				position:relative;
+				top:4px;
+				width:22px;
+				height:22px;
+				background:lighten($secondary-color,10);
+				@include border-radius(50%);				
+				&:before {
+					content:'';
+					display:inline-block;
+					position:absolute;
+					top:0;
+					left:0;
+					width:100%;
+					height:100%;
+					background:$primary-color;
+					opacity:0;
+					@include border-radius(50%);
+					@include transform(scale(.65));
+					@include transition(all .25s ease);
+				}
+			}
+			font-size:16px;
+			font-weight:500;
+			line-height:22px;
+			overflow:visible;
+			margin-right:20px;
+			color:rgba(white,1);
+			cursor:pointer;
+			display:block;
+			padding:10px;
+			position:relative;
+			float:left;
+			text-decoration:none;
+			@include transition(all .25s ease);
+			&.tab-selected {
+				color:$primary-color;
+				@include transition(all .25s ease);
+				.tag-circle {
+					@include transform(scale(1.2));
+					@include transition(all .25s ease);
+				}
+				.tag-circle:before {
+					opacity:1;
+					@include transition(all .25s ease);				
+				}
+
+				&:hover {
+					@include transition(all .25s ease);
+				}
+				//&:active {
+				//	background:darken($color-active,20);
+				//}
+			}
+			&:hover:not(.tab-selected) {
+				color:rgba($primary-color,.7);
+			}
+
+			&:hover:not(.tab-selected) .tag-circle:before{
+				opacity:.7;
+				@include transition(all .25s ease);
+			}
+
+		}
+
+
+	}
+
+	.gallery-container {
+		width:100%;
+		//background:#999;
+		position:relative;
+		.item-container {
+			position:relative;
+			width:100%;
+			margin:auto;
+			//background:#333;
+			@media screen and (max-width:500px) {
+				width:90% !important;
+			}
+			.gallery-item {
+				width:340px;
+				//@include border-radius(5px);
+				@media screen and (max-width:500px) {
+					width:100%;
+				}
+
+				height:200px;
+				background:#333;
+				background-size:cover !important;
+				position:absolute;
+				overflow:hidden;
+				opacity:0;
+			}
+		}
+
+	}
+
+}
