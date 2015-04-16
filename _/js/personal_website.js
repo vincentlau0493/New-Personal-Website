@@ -19,10 +19,26 @@ $(document).ready(function(){
 		keep_final_word : true,
 		cursor_interval : 400,
 		delay : 1000, //when to begin typing
-		infinite : true,
-		contents : ["VINCENT,","A FRONTEND DEVELOPER,","LOVING DESIGN,", "GONNA SHOCK U!"]
+		infinite : false,
+		contents : ["I'M VINCENT,","A FRONTEND DEVELOPER,","ALSO I LOVE DESIGN.", "PLEASE CLICK THAT BUTTON!"]
 	}
-	//$(".typing-box").typingBox(options);
+
+	//register event 
+	$(".typing-box").one("typing",function(){
+		
+        $(this).typingBox(options);
+    });
+
+	$(window).scroll(function(){
+		var scroll_top = $(window).scrollTop();
+
+		var $node = $(".typing-box");
+		var node_top = $node.offset().top;
+		if(scroll_top>node_top-300 && scroll_top<node_top+300 ) {
+			$node.trigger("typing");
+		} 
+	});	
+
 
 	$(".parallax-scroll").parallaxScroll();
 
@@ -30,10 +46,10 @@ $(document).ready(function(){
 
 
 	//slide side panel
-	$(".welcome-nav .menu").on("click",function(){
+	$("#about .my-button").on("click",function(){
 		var $slidePanel = $(".side-info");
 		//var slideOffset = $slidePanel.width();
-		$("body,html").css("overflow","hidden"); //prevent scroll
+		// $("body,html").css("overflow","hidden"); //prevent scroll
 		$slidePanel.animate({
 			right:0
 		},500);
@@ -42,7 +58,7 @@ $(document).ready(function(){
 	$(".side-info .close-icon").on("click",function(){
 		var $slidePanel = $(".side-info");
 		var slideOffset = $slidePanel.outerWidth();
-		$("body,html").css("overflow","scroll"); //scroll
+		// $("body,html").css("overflow","scroll"); //scroll
 		$slidePanel.animate({
 			right:-slideOffset
 		},500);
@@ -83,27 +99,51 @@ $(document).ready(function(){
 			}
 		})
 	});
-	$(".expand-icon").trigger("click");
+	// $(".expand-icon").trigger("click");
 
 
 
 
 	//animate skill panel
-	$('#skill').on('click','.down-icon,.up-icon',function(){
-		if($(this).hasClass('down-icon')) {
-			$(this).closest('.hidding-panel').removeClass('show-it');
-			var $hidden_panel = $(this).closest('.hidding-panel');
-			setTimeout(function(){
-				$hidden_panel.find('.skill-progress').css('width','0');
-			},500)
-		} else {
-			$(this).closest('.hidding-panel').addClass('show-it');
-			var $hidden_panel = $(this).closest('.hidding-panel');
-			setTimeout(function(){
-				$hidden_panel.find('.progress-animating').progressAnimating();
-			},500)
-		}
-	})
+	// $('#skill').on('click','.down-icon,.up-icon',function(){
+	// 	if($(this).hasClass('down-icon')) {
+	// 		$(this).closest('.hidding-panel').removeClass('show-it');
+	// 		var $hidden_panel = $(this).closest('.hidding-panel');
+	// 		setTimeout(function(){
+	// 			$hidden_panel.find('.skill-progress').css('width','0');
+	// 		},500)
+	// 	} else {
+	// 		$(this).closest('.hidding-panel').addClass('show-it');
+	// 		var $hidden_panel = $(this).closest('.hidding-panel');
+	// 		setTimeout(function(){
+	// 			$hidden_panel.find('.progress-animating').progressAnimating();
+	// 		},500)
+	// 	}
+	// });
+
+
+	$('#skill .skill-icon').one('click',function(){
+
+		var $target_nodes = $(this).closest(".skill-item").find(".skill-bar");
+		$target_nodes.progressAnimating();
+
+	});
+
+	//trigger to click skill icon
+	$(window).scroll(function(){
+		var scroll_top = $(window).scrollTop();
+
+		var $nodes = $("#skill .skill-item");
+		$nodes.each(function(){
+			var node_top = $(this).offset().top;
+			if(scroll_top>node_top-280 && scroll_top<node_top+280) {
+				$(this).find(".skill-icon").trigger("click");
+			} 
+		})
+	});	
+	
+
+
 
 	//animation gallery for works
 	$(".animate-gallery").find(".gallery-item").addClass("show-item");
@@ -121,4 +161,34 @@ $(document).ready(function(){
 	})
 
 
+	$(".fancybox-button").fancybox({
+		prevEffect		: 'none',
+		nextEffect		: 'none',
+		closeBtn		: false,
+		helpers		: {
+			title	: { type : 'inside' },
+			buttons	: {}
+		}
+	});
+
+
+	$("[data-target]").each(function(){
+
+		var target_section = $(this).attr("data-target");
+		// alert(target_section);
+		var target_top = $("#"+target_section).offset().top;
+
+		$(this).click(function(){
+			$("html,body").animate({
+				scrollTop:target_top
+			},750);			
+		})
+
+
+	})
+
+
 })
+
+
+

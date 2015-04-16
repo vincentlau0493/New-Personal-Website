@@ -44,7 +44,7 @@ $widget-width:768px;
         padding:0;
         margin:5px;
         margin-top:15px;
-        color:$secondary-color;
+        color:$third-color;
       }
       .timeline-content {
         padding:0;
@@ -61,7 +61,7 @@ $widget-width:768px;
         width:4px;
         height:150px;
         margin:auto;
-        background:$primary-color;
+        background:lighten($primary-color,10);
         
         @include break-point($widget-width) {
           @include transform(rotate(-66deg));
@@ -93,7 +93,7 @@ $widget-width:768px;
     opacity:0;
     width:100%;
     height:0;
-    background:rgba(white,.7);
+    background:rgba(white,1);
     @include transition(all 2s ease-in-out);
   } 
 
@@ -107,8 +107,9 @@ $widget-width:768px;
     font-family:"FontAwesome";
     text-align:center;
     font-size:36px;
+    text-decoration:none;
     line-height:80px;
-    color: $secondary-color;
+    color: $third-color;
     z-index:20;
     display:inline-block;
     width:80px;
@@ -124,10 +125,11 @@ $widget-width:768px;
 
     &:hover {
       cursor:pointer;
-      //background:$secondary-color;
+      //background:$third-color;
       //color:white;
       @include transform(scale(1.1));
       @include transition(all .25s ease);
+      text-decoration:none;
     }
   }
 

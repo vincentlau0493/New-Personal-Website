@@ -13,7 +13,7 @@
 
 			//parallax scroll
 			var beginOffset = $target.offset().top;
-			var endOffset = beginOffset+$target.height();
+			var endOffset = beginOffset+$target.height()+200;
 			var offset = 100;
 			$(window).scroll(function(e){
 				var scrollTop = $(this).scrollTop();
