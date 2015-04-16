@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Twitter Topic Visualization</title>
+
+    <!-- Bootstrap -->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+	<!-- Important Owl stylesheet -->
+	<link rel="stylesheet" href="../owl-carousel/owl.carousel.css">
+	<!-- Default Theme -->
+	<link rel="stylesheet" href="../owl-carousel/owl.theme.css">
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="../css/work.css">
+	<link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body style="position:relative">
+    
+	<nav class="work-nav">
+		<a href="../index.html#work" class="back-button">BACK</a>
+		<span class="nav-title">WORK</span>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="work-title">TWITTER TOPIC VISUALIZATION</h4>
+				<p class="work-related">INFORMATION VISUALIZATION / PHP / JAVASCRIPT / D3.JS / NODEJS</p>
+				<p class="work-icons"><span class="fa-pencil"></span><span class="fa-desktop"></span><span class="fa-code"></span></p>
+				<p class="work-brief">
+					The visualization aims to display the complete relationships among the tweets and topics from different dates and various states. Taking #Thanksgiving as an example, we grabbed a large amount of tweets from 11/21 to 12/6 by twitter api, and implemented this application to show the association.
+				</p>
+				<a href="/vistwitter" class="work-button" target="blank">PLAY WITH THE PROJECT</a>
+			</div>
+		</div>
+		<div class="row work-overview" style="margin-top:36px">
+<!-- 			<div class="col-xs-12 col-sm-10 col-sm-offset-1 work-banner" style='background:url("../img/works/rnexus/rnexusbanner.jpg") center center no-repeat'></div> -->
+			<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				<div class="owl-carousel owl-theme">
+				  <div class="item"><img src="../img/works/vistwitter/vistwitter_1.jpg" alt="Banner"></div>
+				  <div class="item"><img src="../img/works/vistwitter/vistwitter_2.jpg" alt="Relationship"></div>
+				  <div class="item"><img src="../img/works/vistwitter/vistwitter_3.jpg" alt="Relationship"></div>
+				  <div class="item"><img src="../img/works/vistwitter/vistwitter_4.jpg" alt="Relationship"></div>
+				  <div class="item"><img src="../img/works/vistwitter/vistwitter_5.jpg" alt="Relationship"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row work-body">
+			<div class="col-xs-12 col-sm-9">
+
+				<div class="row">
+					<div class="col-xs-12">
+						<h4 class="work-subtitle">BACKGROUND</h4>
+						<p class="work-para">
+							As a capturer of 2014 American Thanksgiving on Twitter, our project aims at providing a platform to allow people share this festival feeling, discovering what others are talking about on Twitter, the people living in different states may have various concerns about this Thanksgiving festival.
+
+						</p>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-xs-12">
+						<h4 class="work-subtitle">DESIGN PROCESS</h4>
+						<div class="work-list">
+							<p class="fa-check-square-o">Initial designing idea</p>
+							<p class="fa-check-square-o">Crawling data via Twitter APIs</p>
+							<p class="fa-check-square-o">Using php to clear up data</p>
+							<p class="fa-check-square-o">Improving layout</p>
+						</div>
+
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-xs-12">
+						<h4 class="work-subtitle">LAYOUT INTRODUCTION</h4>
+						<p class="work-para">
+							<strong class="highlight">Geographical map:</strong> The reason why we selected to use geographical map is that: we want to compare the Tweets’ amounts throughout the whole America country. The color depth variation could deliver the differences of the Tweets’ amounts in each state in a specific period at the first glance. Geographical map could highlight the relationship between the Tweets’ amounts and the location distribution, and express this relationship in a clearer way. And if the states can be clicked, there can be more interactions with other components.  
+						</p>
+
+						<p class="work-para">
+							<strong class="highlight">Pie Chart:</strong> The difference of the Tweets’ amounts in different states is essential to our visualization task. We take advantage of a pie chart to label this difference in a numerical way. By comparing the sizes variations in the pie chart, the changes of Tweets’ amounts are obvious. And combining with the state’s name label, the comparison work about different states’ Tweets amounts can be completed 
+						</p>
+
+						<p class="work-para">
+							<strong class="highlight">Node-Link:</strong> As node-link having the capacity to reveal the relationships between different nodes by drawing links based on some numerical correlations. We design a node-link graph based on force-directed layout, which set each hash tag as an individual node, to explore 
+						</p>
+
+						<p class="work-para">
+							<strong class="highlight">Bar Chart:</strong> Bar chart is another carrier to complete the comparison between different states’ Tweets’ amounts. The reason why we choose this format is that the bar chart is the most fluent used layout, which means this layout is also intuitive to most people.
+						</p>						
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12">
+						<h4 class="work-subtitle">IMPLEMENT</h4>
+						<p class="work-para">
+							Specifically, we first used php to capture targeted data from Twitter every half hour in our targeted duration. And after getting such a messy dataset, we used nodeJS to filter effective data items, by deleting those items with other location information such as “the place in your heart”, etc, and organizing data into a format that d3 can use. With ideal dataset, we used d3 to construct the end-user interface to present the data. Specifically, we added layouts one by one, by referring the examples in <a href="https://github.com/mbostock/d3/wiki/Gallery">d3js.org</a>; refining them, like linking one layout with other layouts, adjusting some arguments to make some small changes, and adding some other elements to make them better looking.
+						</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12">
+						<h4 class="work-subtitle">CONCLUSION</h4>
+						<p class="work-para">
+							As a summarization of what we have done, we are inclined to write this paper to introduce our initial motivation of doing this project, review of related work on visualizing social network, description of the developing rationale and visualization system architecture, and also a small survey on user experience.
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-xs-12 col-sm-3 work-sidebar">
+				<h4 class="work-subtitle">Team</h4>
+				<p class="work-para">
+					Jiayu Liu, Yan Ma, Yiran Li, Shujun Zhang
+				</p>
+
+				<h4 class="work-subtitle">Award</h4>
+				<p class="work-para">
+					Most Interactive Visulization
+				</p>
+
+				<h4 class="work-subtitle">Contributions</h4>
+				<p class="work-para">
+					Interaction Design, Interface Design, Layout implement, Frontend development
+				</p>
+
+
+				<h4 class="work-subtitle">Deliverables</h4>
+				<p class="work-para">
+					Final paper</br>
+					Web application</br>
+				</p>
+
+			</div>
+
+
+		</div>
+	</div><!-- container -->
+	
+	<a class="previous-button"><span class="fa-angle-left"></span><span class="hidden-xs">PREVIOUS</span></a>
+	<a class="next-button"><span class="hidden-xs">NEXT</span><span class="fa-angle-right"></span></a>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../owl-carousel/owl.carousel.js"></script>
+    <script src="../js/jquery.responsiveVideo.js"></script>
+		<script src="../js/work.js"></script>
+  </body>
+</html>
+
+

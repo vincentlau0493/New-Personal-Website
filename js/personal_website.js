@@ -37,7 +37,7 @@ function filterItem(a) {
         return this.each(function() {
             var d = a(this), e = {
                 scrollSpeed: 1.2
-            }, f = a.extend({}, e, c), g = d.offset().top, h = g + d.height(), i = 100;
+            }, f = a.extend({}, e, c), g = d.offset().top, h = g + d.height() + 200, i = 100;
             a(b).scroll(function() {
                 var b = a(this).scrollTop(), c = a(this).height();
                 if (c > g) {
@@ -59,54 +59,71 @@ var itemVerticalSpace = 20, itemHorizontalSpace = 20;
 $(document).ready(function() {
     var a = $(window).height();
     $("#welcome").css("height", a);
-    $(".parallax-scroll").parallaxScroll(), $(".welcome-nav .menu").on("click", function() {
+    var b = {
+        delay_after_typing: 7,
+        typing_interval: 100,
+        interval_for_word: 500,
+        keep_final_word: !0,
+        cursor_interval: 400,
+        delay: 1e3,
+        infinite: !1,
+        contents: [ "I'M VINCENT,", "A FRONTEND DEVELOPER,", "ALSO I LOVE DESIGN.", "PLEASE CLICK THAT BUTTON!" ]
+    };
+    $(".typing-box").one("typing", function() {
+        $(this).typingBox(b);
+    }), $(".parallax-scroll").parallaxScroll(), $("#about .my-button").on("click", function() {
         var a = $(".side-info");
-        $("body,html").css("overflow", "hidden"), a.animate({
+        a.animate({
             right: 0
         }, 500);
     }), $(".side-info .close-icon").on("click", function() {
         var a = $(".side-info"), b = a.outerWidth();
-        $("body,html").css("overflow", "scroll"), a.animate({
+        a.animate({
             right: -b
         }, 500);
-    }), $(".expand-icon").on("click", function() {
-        var a = $(this).parent().find(".left-mask"), b = $(this).parent().find(".right-mask");
-        a.animate({
-            left: "-50%"
-        }, 800), b.animate({
-            right: "-50%"
-        }, 800), $(this).fadeOut(1e3);
     }), $(window).scroll(function() {
         var a = $(window).scrollTop(), b = $(".timeline-container .timeline-node");
         b.each(function() {
             var b = $(this).offset().top;
             a > b - 300 ? $(this).find(".timeline-progress").addClass("timeline-active") : $(this).find(".timeline-progress").removeClass("timeline-active");
         });
-    }), $(".expand-icon").trigger("click"), $("#skill").on("click", ".down-icon,.up-icon", function() {
-        if ($(this).hasClass("down-icon")) {
-            $(this).closest(".hidding-panel").removeClass("show-it");
-            var a = $(this).closest(".hidding-panel");
-            setTimeout(function() {
-                a.find(".skill-progress").css("width", "0");
-            }, 500);
-        } else {
-            $(this).closest(".hidding-panel").addClass("show-it");
-            var a = $(this).closest(".hidding-panel");
-            setTimeout(function() {
-                a.find(".progress-animating").progressAnimating();
-            }, 500);
-        }
+    }), $("#skill .skill-icon").one("click", function() {
+        var a = $(this).closest(".skill-item").find(".skill-bar");
+        a.progressAnimating();
+    }), $(window).scroll(function() {
+        var a = $(window).scrollTop(), b = $("#skill .skill-item");
+        b.each(function() {
+            var b = $(this).offset().top;
+            a > b - 280 && b + 280 > a && $(this).find(".skill-icon").trigger("click");
+        });
     }), $(".animate-gallery").find(".gallery-item").addClass("show-item"), positionItem(), 
     $(window).resize(checkWindowSize), $(".animate-gallery").on("click", ".tab-container a", function(a) {
         a.preventDefault(), $(".animate-gallery a[data-keyword]").removeClass("tab-selected");
         var b = $(this).data("keyword");
         $(this).addClass("tab-selected"), filterItem(b);
+    }), $(".fancybox-button").fancybox({
+        prevEffect: "none",
+        nextEffect: "none",
+        closeBtn: !1,
+        helpers: {
+            title: {
+                type: "inside"
+            },
+            buttons: {}
+        }
+    }), $("[data-target]").each(function() {
+        var a = $(this).attr("data-target"), b = $("#" + a).offset().top;
+        $(this).click(function() {
+            $("html,body").animate({
+                scrollTop: b
+            }, 750);
+        });
     });
 }), function(a) {
     a.fn.progressAnimating = function(b) {
         var c = {
-            speed: 2e3,
-            delay: 100
+            speed: 500,
+            delay: 0
         }, d = a.extend({}, b, c);
         return this.each(function() {
             var b = a(this).find("[data-progress]");
@@ -116,7 +133,7 @@ $(document).ready(function() {
                     c.animate({
                         width: e + "%"
                     }, d.speed);
-                }, b * d.delay, "easeOutQuad");
+                }, b * d.delay, "ease");
             });
         });
     };

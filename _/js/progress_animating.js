@@ -3,8 +3,8 @@
 	$.fn.progressAnimating = function(options){
 
 		var defaults = {
-			speed:2000,
-			delay:100
+			speed:500,
+			delay:0
 		}
 		var opts = $.extend({},options,defaults);
 
@@ -23,7 +23,7 @@
 					$single_bar.animate({
 						width:progress+'%'
 					},opts.speed)
-				},index*opts.delay,'easeOutQuad')
+				},index*opts.delay,'ease')
 
 			})
 		})
